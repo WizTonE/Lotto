@@ -1,1 +1,2 @@
-Prize = new Mongo.Collection('prize');
+Prizes = new Mongo.Collection('prizes');
+Members = new Mongo.Collection('members');

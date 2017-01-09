@@ -14,10 +14,10 @@ import '../ui/slot.css';
 
 Template.hello.helpers({
   counter() {
-    return Prize.find().count();
+    return Prizes.find().count();
   },
   mySub(){
-    var myCursor = Prize.find().fetch();
+    var myCursor = Prizes.find().fetch();
     return myCursor;
   }
 });
@@ -35,7 +35,19 @@ Template.hello.events({
     'click button': function(){
           var email = $('#tbxCustEmail').val();
           var msg = $('#tbxCustMsg').val();
-          Prize.insert({Email:email,Message:msg});
+          Prizes.insert({Email:email,Message:msg});
     }
 });;
 
+Template.prizeInput.events({
+    'Update Prize': function(){
+          var prize = $('#prizes')[0].val();
+          var seq = $('#Sequence').val();
+          var TotalPrizes = Prizes.find();
+          var Checker = Prizes.find({Prize:prize});
+          if(Checker.count() > 0)
+            Prizes.Update({Sequence:seq},{$set:{Prize:prize}});
+          else
+            Prizes.insert({Sequence:TotalPrizes.count()+1, Prize:orize});
+    }
+});;

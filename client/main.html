@@ -20,14 +20,16 @@
 </template>
 
 <template name="prizeInput">
-  <select>
+  <select id="prizes">
     {{#each prizes}}
-      <option value="{{index}}">{{prize}}</option>
+      <option value="{{prize}}">{{prize}}</option>
     {{/each}}
   </select>
+  <input id="Sequence"/>
+  <button>Update Prize</button>
 </template>
 
-<template name=awardList>
+<template name="awardList">
   {{#each prizes}}
     <p>{{prize}}</p>
     {{#each awards prize}}
