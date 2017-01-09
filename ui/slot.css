@@ -7,7 +7,7 @@ body {
 }
 .container {
 	margin:0 auto;
-	width:266px;
+	/*width:266px; */ /* mark for running Bootstrap. */
 }
 .slot-wrapper {
 	 border: 1px solid #000000;

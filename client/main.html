@@ -1,8 +1,27 @@
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Lotto</title>
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <img src="/images/logoBanner.jpg" alt="">
+    <!--<div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>     
+    </div>-->
+  </nav>
   <!--<h1>Welcome to Meteor!</h1>-->
 
   <!--{{> hello}}-->
@@ -27,8 +46,8 @@
       </option>
     {{/each}}
   </select>
-  <input id="Sequence"/>
-  <button>Update Prize</button>
+  <input id="Sequence" />
+  <button class="btn btn-default">Update Prize</button>
 </template>
 
 <template name="awardList">
@@ -37,16 +56,47 @@
   {{#each awards prize}}
   <p>{{Sequence}} -- {{Name}}</p>
   {{/each}} {{/each}}
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Column heading</th>
+        <th>Column heading</th>
+        <th>Column heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="active">
+        <th scope="row">1</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+      </tr>
+      <tr class="success">
+        <th scope="row">3</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <template name="mainLayout">
-    <!--<div class="container">-->
-        <header>
-            <h1>Welcome to Meteor!</h1>
-        </header>
-        <main>
-            {{>Template.dynamic template=content}}
-        </main>
-        <footer>This is footer</footer>
-    <!--</div>-->
+  <div class="container">
+    <header>
+      <h1>Welcome to Meteor!</h1>
+    </header>
+    <main>
+      {{>Template.dynamic template=content}}
+    </main>
+    <footer>This is footer</footer>
+  </div>
 </template>
