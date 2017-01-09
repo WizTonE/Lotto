@@ -22,7 +22,9 @@
 <template name="prizeInput">
   <select id="prizes">
     {{#each prizes}}
-      <option value="{{prize}}">{{prize}}</option>
+      <option value="{{prize}}">
+        {{prize}}
+      </option>
     {{/each}}
   </select>
   <input id="Sequence"/>

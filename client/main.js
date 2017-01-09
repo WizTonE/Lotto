@@ -22,6 +22,16 @@ Template.hello.helpers({
   }
 });
 
+Template.awardList.helpers({
+  prizes() {
+    return Prizes.find().count();
+  },
+  awards(prize){
+    var myCursor = Members.find({Prize:prize}).fetch();
+    return myCursor;
+  }
+});
+
 // Template.hello.onCreated(function() {
 //   this.getListId = () => FlowRouter.getParam('_id');
 
