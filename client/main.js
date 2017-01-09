@@ -24,7 +24,7 @@ Template.hello.helpers({
 
 Template.awardList.helpers({
   prizes() {
-    return Prizes.find().fetch();
+    return Prizes.find({},{sort: {index:-1}}).fetch();
   },
   awards(prize){
     var myCursor = Members.find({Prize:prize}).fetch();
@@ -34,7 +34,7 @@ Template.awardList.helpers({
 
 Template.awardInput.helpers({
   prizes() {
-    return Prizes.find().fetch();
+    return Prizes.find({},{sort: {index:-1}}).fetch();
   },
   awards(prize){
     var myCursor = Members.find({Prize:prize}).fetch();
