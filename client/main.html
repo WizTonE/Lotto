@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
   <!--<nav class="navbar navbar-inverse navbar-fixed-top">
     <img src="/images/logoBanner.jpg" alt="">
   </nav>-->
@@ -14,6 +15,8 @@
   <!--{{> awardList}}
   {{> prizeInput}}-->
 
+=======
+>>>>>>> origin/master
   <!--<h1>Welcome to Meteor!</h1>-->
 
   <!--{{> hello}}-->
@@ -30,11 +33,17 @@
   <input id="tbxCustMsg">
 </template>
 
-<template name="prizeInput">
+<template name="awardInput">
+   {{#each prizes}}
+    <p>{{Prize}}</p>
+    {{#each awards Prize}}
+      <p>{{Sequence}} -- {{Name}}</p>
+    {{/each}}
+  {{/each}}
   <select id="prizes">
     {{#each prizes}}
-      <option value="{{prize}}">
-        {{prize}}
+      <option value="{{Prize}}">
+        {{Prize}}
       </option>
     {{/each}}
   </select>
@@ -42,10 +51,20 @@
   <button class="btn btn-default">Update Prize</button>
 </template>
 
+<template name="prizeInput">
+  {{#each prizes}}
+    <p>{{Prize}}</p>
+  {{/each}}
+  <div>prize:</div>
+  <input id="prize">
+  <button>Input Prize</button>
+</template>
+
 <template name="awardList">
   <h1>中獎名單</h1>
 
   {{#each prizes}}
+<<<<<<< HEAD
   <p>{{prize}}</p>
   {{#each awards prize}}
   <p>{{Sequence}} -- {{Name}}</p>
@@ -112,3 +131,25 @@
 </footer>
 </div>
 </template>
+=======
+    <p>{{Prize}}</p>
+    {{#each awards Prize}}
+      <p>{{Sequence}} -- {{Name}}</p>
+    {{/each}} 
+  {{/each}}
+</template>
+
+<template name="mainLayout">
+    <!--<div class="container">-->
+        <header>
+            <h1>Welcome to Meteor!</h1>
+        </header>
+        <main>
+            {{>Template.dynamic template=content}}
+        </main>
+        <footer>This is footer</footer>
+    <!--</div>-->
+</template>
+
+
+>>>>>>> origin/master
