@@ -53,11 +53,16 @@ Template.prizeInput.events({
     'Update Prize': function(){
           var prize = $('#prizes')[0].val();
           var seq = $('#Sequence').val();
-          var TotalPrizes = Prizes.find();
-          var Checker = Prizes.find({Prize:prize});
-          if(Checker.count() > 0)
-            Prizes.Update({Sequence:seq},{$set:{Prize:prize}});
+          var totalPrizes = Prizes.find();
+          var checker = Prizes.find({Prize:prize});
+          if(checker.count() > 0)
+          {
+            Members.Update({Sequence:seq},{$set:{Prize:prize}});
+          }
           else
-            Prizes.insert({Sequence:TotalPrizes.count()+1, Prize:orize});
+          {
+            Prizes.insert({Sequence:totalPrizes.count()+1, Prize:prize});
+            Members.Update({Sequence:seq},{$set:{Prize:prize}});
+          }
     }
 });;
