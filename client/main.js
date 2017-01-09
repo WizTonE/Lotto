@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { DDP } from 'meteor/ddp-client'
+// import { DDP } from 'meteor/ddp-client'
 import './main.html';
 import '../client/jquery.backgroundPosition.js';
 import '../client/jquery.spritely.js';
