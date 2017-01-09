@@ -3,18 +3,25 @@
 </head>
 
 <body>
+<<<<<<< HEAD
   <h1>中獎名單</h1>
 
   {{> awardList}}
   {{> prizeInput}}
   
+=======
+  <!--<h1>Welcome to Meteor!</h1>-->
+
+  <!--{{> hello}}-->
+
+>>>>>>> origin/master
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
   {{#each mySub}}
-        <p>{{Email}}</p>
+  <p>{{Email}}</p>
   {{/each}}
   <input id="tbxCustEmail">
   <input id="tbxCustMsg">
@@ -34,9 +41,20 @@
 
 <template name="awardList">
   {{#each prizes}}
-    <p>{{prize}}</p>
-    {{#each awards prize}}
-      <p>{{Sequence}} -- {{Name}}</p>
-    {{/each}}
-  {{/each}}
+  <p>{{prize}}</p>
+  {{#each awards prize}}
+  <p>{{Sequence}} -- {{Name}}</p>
+  {{/each}} {{/each}}
+</template>
+
+<template name="mainLayout">
+    <!--<div class="container">-->
+        <header>
+            <h1>Welcome to Meteor!</h1>
+        </header>
+        <main>
+            {{>Template.dynamic template=content}}
+        </main>
+        <footer>This is footer</footer>
+    <!--</div>-->
 </template>
