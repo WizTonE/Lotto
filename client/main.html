@@ -3,18 +3,10 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-  <h1>中獎名單</h1>
-
-  {{> awardList}}
-  {{> prizeInput}}
-  
-=======
   <!--<h1>Welcome to Meteor!</h1>-->
 
   <!--{{> hello}}-->
 
->>>>>>> origin/master
 </body>
 
 <template name="hello">
@@ -27,11 +19,17 @@
   <input id="tbxCustMsg">
 </template>
 
-<template name="prizeInput">
+<template name="awardInput">
+   {{#each prizes}}
+    <p>{{Prize}}</p>
+    {{#each awards Prize}}
+      <p>{{Sequence}} -- {{Name}}</p>
+    {{/each}}
+  {{/each}}
   <select id="prizes">
     {{#each prizes}}
-      <option value="{{prize}}">
-        {{prize}}
+      <option value="{{Prize}}">
+        {{Prize}}
       </option>
     {{/each}}
   </select>
@@ -39,12 +37,22 @@
   <button>Update Prize</button>
 </template>
 
+<template name="prizeInput">
+  {{#each prizes}}
+    <p>{{Prize}}</p>
+  {{/each}}
+  <div>prize:</div>
+  <input id="prize">
+  <button>Input Prize</button>
+</template>
+
 <template name="awardList">
   {{#each prizes}}
-  <p>{{prize}}</p>
-  {{#each awards prize}}
-  <p>{{Sequence}} -- {{Name}}</p>
-  {{/each}} {{/each}}
+    <p>{{Prize}}</p>
+    {{#each awards Prize}}
+      <p>{{Sequence}} -- {{Name}}</p>
+    {{/each}} 
+  {{/each}}
 </template>
 
 <template name="mainLayout">
@@ -58,3 +66,5 @@
         <footer>This is footer</footer>
     <!--</div>-->
 </template>
+
+
