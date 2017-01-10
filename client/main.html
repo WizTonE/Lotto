@@ -1,9 +1,22 @@
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Lotto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
+
+  <!--<nav class="navbar navbar-inverse navbar-fixed-top">
+    <img src="/images/logoBanner.jpg" alt="">
+  </nav>-->
+  
+  <!--{{> awardList}}
+  {{> prizeInput}}-->
+
+
   <!--<h1>Welcome to Meteor!</h1>-->
 
   <!--{{> hello}}-->
@@ -34,8 +47,8 @@
       </option>
     {{/each}}
   </select>
-  <input id="Sequence"/>
-  <button>Update Prize</button>
+  <input id="Sequence" />
+  <button class="btn btn-default">Update Prize</button>
 </template>
 
 <template name="prizeInput">
@@ -48,9 +61,86 @@
 </template>
 
 <template name="awardList">
+
   <div>
     {{#each lastMembers}}
       <div class="lastMember">恭喜{{Sequence}} -- {{Name}}抽中{{Prize}} !!</div>
+
+  <h1>中獎名單</h1>
+
+  {{#each prizes}}
+
+  <p>{{prize}}</p>
+  {{#each awards prize}}
+  <p>{{Sequence}} -- {{Name}}</p>
+  {{/each}} {{/each}}
+
+  <h2>六獎</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+    </div>
+  </div>
+  <h2>五獎</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+      <div class="floating-box">測試人</div>
+    </div>
+  </div>
+
+</template>
+
+<template name="mainLayout">
+
+  <div id="logoBannerArea" style="text-align:center" class="navbar ">
+<img src="/images/logoBanner.jpg" alt="" />
+</div>
+
+<div class="container">
+  <!--<header>
+ 
+  </header>-->
+
+  <main>
+    {{>Template.dynamic template=content}}
+  </main>
+  <footer class="footer">
+    <!--<div class="after-box">
+        以下已無資料
+      </div>-->
+    <div>
+      <p class="text-muted" style="text-align: center">以下已無資料</p>
+</div>
+</footer>
+</div>
+</template>
+
+    <p>{{Prize}}</p>
+    {{#each awards Prize}}
+      <p>{{Sequence}} -- {{Name}}</p>
+
     {{/each}} 
   </div>
   <div>
@@ -150,5 +240,4 @@
         <footer>This is footer</footer>
     <!--</div>-->
 </template>
-
 
