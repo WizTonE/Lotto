@@ -21,10 +21,17 @@
     </div>
     <div>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {{#each prizes}} {{#if isFirstIndex index}}
+                <li data-target="#myCarousel" data-slide-to="{{index}}" class="active"></li>
+                {{else}}
+                <li data-target="#myCarousel" data-slide-to="{{index}}"></li>
+                {{/if}} {{/each}}
+            </ol>
             <div class="carousel-inner" role="listbox">
                 {{#each prizes}} {{#if isFirstIndex index}}
                 <div id="cl{{index}}" class="item active">
-                    <img src="RedCover2.jpg">
+                    <img src="RedCover2.jpg" alt="{{Prize}}">
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
                         {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
@@ -32,7 +39,7 @@
                 </div>
                 {{else}}
                 <div id="cl{{index}}" class="item">
-                    <img src="RedCover2.jpg">
+                    <img src="RedCover2.jpg" alt="{{Prize}}">
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
                         {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}

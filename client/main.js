@@ -142,3 +142,15 @@ Template.awardListCarousel.onRendered(function () {
   // Use the Packery jQuery plugin
   this.$('cl1').addClass('active');
 });
+
+Template.awardList.onRendered(function () {
+  // Use the Packery jQuery plugin
+  $(function(){
+    $('.carousel').carousel({
+        interval: 2000
+      });
+  });
+  $('#myCarousel').on('slide.bs.carousel', function () {
+    $('.right carousel-control').trigger('click');
+  })
+});
