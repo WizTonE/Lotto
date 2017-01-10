@@ -5,7 +5,7 @@ import './main.html';
 import '../client/jquery.backgroundPosition.js';
 import '../client/jquery.spritely.js';
 import '../client/slot.js';
-import '../ui/slot.css';
+// import '../ui/slot.css';
 
 // const handle = Meteor.subscribe('prize');
 // Tracker.autorun(() => {
