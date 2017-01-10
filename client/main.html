@@ -7,19 +7,17 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+  <!--class="bgimg">-->
+
   <!--<nav class="navbar navbar-inverse navbar-fixed-top">
     <img src="/images/logoBanner.jpg" alt="">
   </nav>-->
-  
+
   <!--{{> awardList}}
   {{> prizeInput}}-->
 
-=======
->>>>>>> origin/master
-  <!--<h1>Welcome to Meteor!</h1>-->
-
-  <!--{{> hello}}-->
+  <!--<h1>Welcome to Meteor!</h1>
+  {{> hello}}-->
 
 </body>
 
@@ -34,12 +32,11 @@
 </template>
 
 <template name="awardInput">
-   {{#each prizes}}
-    <p>{{Prize}}</p>
-    {{#each awards Prize}}
-      <p>{{Sequence}} -- {{Name}}</p>
-    {{/each}}
-  {{/each}}
+  {{#each prizes}}
+  <p>{{Prize}}</p>
+  {{#each awards Prize}}
+  <p>{{Sequence}} -- {{Name}}</p>
+  {{/each}} {{/each}}
   <select id="prizes">
     {{#each prizes}}
       <option value="{{Prize}}">
@@ -48,12 +45,12 @@
     {{/each}}
   </select>
   <input id="Sequence" />
-  <button class="btn btn-default">Update Prize</button>
+  <button class="btn btn-default" style="width: 200px">Update Member's Prize</button>
 </template>
 
 <template name="prizeInput">
   {{#each prizes}}
-    <p>{{Prize}}</p>
+  <p>{{Prize}}</p>
   {{/each}}
   <div>prize:</div>
   <input id="prize">
@@ -64,92 +61,43 @@
   <h1>中獎名單</h1>
 
   {{#each prizes}}
-<<<<<<< HEAD
-  <p>{{prize}}</p>
-  {{#each awards prize}}
-  <p>{{Sequence}} -- {{Name}}</p>
-  {{/each}} {{/each}}
+  <div id="box{{index}}">
+    <h2>{{Prize}}</h2>
 
-  <h2>六獎</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        {{#each awards Prize}}
+
+        <div class="floating-box">{{Sequence}}-{{Name}}</div>
+
+        {{/each}}
+
+      </div>
     </div>
   </div>
-  <h2>五獎</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-      <div class="floating-box">測試人</div>
-    </div>
-  </div>
+  {{/each}}
 
 </template>
 
 <template name="mainLayout">
 
-  <div id="logoBannerArea" style="text-align:center" class="navbar ">
-<img src="/images/logoBanner.jpg" alt="" />
-</div>
+  <div id="logoBannerArea" class="navbar ">
+    <img src="/images/logoBanner.jpg" alt="" />
+  </div>
 
-<div class="container">
-  <!--<header>
- 
-  </header>-->
+  <div class="container">
+    <header>
+    </header>
+    <main>
+      {{>Template.dynamic template=content}}
+    </main>
 
-  <main>
-    {{>Template.dynamic template=content}}
-  </main>
+  </div>
   <footer class="footer">
-    <!--<div class="after-box">
-        以下已無資料
-      </div>-->
-    <div>
+    <div class="container">
       <p class="text-muted" style="text-align: center">以下已無資料</p>
 </div>
 </footer>
-</div>
-</template>
-=======
-    <p>{{Prize}}</p>
-    {{#each awards Prize}}
-      <p>{{Sequence}} -- {{Name}}</p>
-    {{/each}} 
-  {{/each}}
-</template>
 
-<template name="mainLayout">
-    <!--<div class="container">-->
-        <header>
-            <h1>Welcome to Meteor!</h1>
-        </header>
-        <main>
-            {{>Template.dynamic template=content}}
-        </main>
-        <footer>This is footer</footer>
-    <!--</div>-->
 </template>
-
-
->>>>>>> origin/master
