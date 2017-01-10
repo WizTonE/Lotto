@@ -45,7 +45,12 @@ Template.awardList.helpers({
   },
   lastMember() {
     return Members.find({ Prize: { $ne: "" } }, { sort: { Time: -1 }, limit: 1 }).fetch();
+  },
+  tableRowStyle(idx) {
+    if (idx % 2 === 1)
+      return "danger";
   }
+
 });
 
 Template.awardInput.helpers({
@@ -145,10 +150,10 @@ Template.awardListCarousel.onRendered(function () {
 
 Template.awardList.onRendered(function () {
   // Use the Packery jQuery plugin
-  $(function(){
+  $(function () {
     $('.carousel').carousel({
-        interval: 2000
-      });
+      interval: 2000
+    });
   });
   $('#myCarousel').on('slide.bs.carousel', function () {
     $('.right carousel-control').trigger('click');
