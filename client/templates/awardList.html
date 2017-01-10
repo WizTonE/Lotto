@@ -1,0 +1,54 @@
+<template name="awardList">
+
+    <div>
+        {{#each lastMember}}
+        <div class="lastMember">恭喜{{Sequence}} - {{Name}}抽中{{Prize}} !!</div>
+        {{/each}}
+
+    </div>
+
+    <div>
+        <p>{{Prize}}</p>
+        {{#each awards Prize}}
+        <p>{{Sequence}} - {{Name}}</p>
+
+        {{/each}}
+    </div>
+    <div>
+        {{#each last5Members }}
+        <div class="last5Members">{{Prize}} {{Sequence}} - {{Name}}</div>
+        {{/each}}
+    </div>
+    <div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                {{#each prizes}} {{#if isFirstIndex index}}
+                <div id="cl{{index}}" class="item active">
+                    <img src="RedCover2.jpg">
+                    <div class="carousel-caption">
+                        <p>{{Prize}}</p>
+                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                    </div>
+                </div>
+                {{else}}
+                <div id="cl{{index}}" class="item">
+                    <img src="RedCover2.jpg">
+                    <div class="carousel-caption">
+                        <p>{{Prize}}</p>
+                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                    </div>
+                </div>
+                {{/if}} {{/each}}
+            </div>
+
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</template>

@@ -8,14 +8,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
   <!--class="bgimg">-->
-  <div class="container">
-    123456
-  </div>
-=======
-
->>>>>>> origin/master
   <!--<nav class="navbar navbar-inverse navbar-fixed-top">
     <img src="/images/logoBanner.jpg" alt="">
   </nav>-->
@@ -23,15 +16,12 @@
   <!--{{> awardList}}
   {{> prizeInput}}-->
 
-<<<<<<< HEAD
   <!--<h1>Welcome to Meteor!</h1>
   {{> hello}}-->
-=======
 
   <!--<h1>Welcome to Meteor!</h1>-->
 
   <!--{{> hello}}-->
->>>>>>> origin/master
 
 </body>
 
@@ -45,196 +35,23 @@
   <input id="tbxCustMsg">
 </template>
 
-<template name="awardInput">
-  {{#each prizes}}
-  <p>{{Prize}}</p>
-  {{#each awards Prize}}
-  <p>{{Sequence}} -- {{Name}}</p>
-  {{/each}} {{/each}}
-  <select id="prizes">
-    {{#each prizes}}
-      <option value="{{Prize}}">
-        {{Prize}}
-      </option>
-    {{/each}}
-  </select>
-  <input id="Sequence" />
-  <button class="btn btn-default" style="width: 200px">Update Member's Prize</button>
-</template>
 
-<template name="prizeInput">
-  {{#each prizes}}
-  <p>{{Prize}}</p>
-  {{/each}}
-  <div>prize:</div>
-  <input id="prize">
-  <button>Input Prize</button>
-</template>
 
-<template name="awardList">
 
-  <div>
-    {{#each lastMembers}}
-      <div class="lastMember">恭喜{{Sequence}} -- {{Name}}抽中{{Prize}} !!</div>
-
-  <h1>中獎名單</h1>
-
-  {{#each prizes}}
-<<<<<<< HEAD
-  <div id="box{{index}}">
-    <h2>{{Prize}}</h2>
-=======
-
-  <p>{{prize}}</p>
-  {{#each awards prize}}
-  <p>{{Sequence}} -- {{Name}}</p>
-  {{/each}} {{/each}}
->>>>>>> origin/master
-
-    <div class="panel panel-default">
-      <div class="panel-body">
-
-        {{#each awards Prize}}
-
-        <div class="floating-box">{{Sequence}}-{{Name}}</div>
-
-        {{/each}}
-
-      </div>
-    </div>
-  </div>
-  {{/each}}
-
-</template>
 
 <template name="mainLayout">
-
-  <div id="logoBannerArea" class="navbar ">
-    <img src="/images/logoBanner.jpg" alt="" />
-  </div>
-
-  <div class="container">
-    <header>
-    </header>
-    <main>
-      {{>Template.dynamic template=content}}
-    </main>
-
-  </div>
+  <header>
+    <!--<h1>長庚醫院行政中心旺年會!</h1>-->
+    <div id="logoBannerArea" class="navbar ">
+      <img src="/images/logoBanner.jpg" alt="" />
+    </div>
+  </header>
+  <main>
+    {{>Template.dynamic template=content}}
+  </main>
   <footer class="footer">
-    <div class="container">
-      <p class="text-muted" style="text-align: center">以下已無資料</p>
-</div>
-</footer>
-<<<<<<< HEAD
-
-</template>
-=======
-</div>
-</template>
-
-    <p>{{Prize}}</p>
-    {{#each awards Prize}}
-      <p>{{Sequence}} -- {{Name}}</p>
-
-    {{/each}} 
-  </div>
-  <div>
-    {{#each last5Members }}
-      <div class="last5Members">{{Sequence}} -- {{Name}}</div>
-    {{/each}} 
-  </div>
-  <div>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-      {{#each prizes}}
-        {{#if isFirstIndex index}}
-          <div id="cl{{index}}" class="item active">
-            <img src="RedCover2.jpg">
-            <div class="carousel-caption">
-            <p>{{Prize}}</p>
-            {{#each awards Prize}}
-              {{Sequence}} -- {{Name}}
-            {{/each}} 
-            </div>
-          </div>
-        {{else}}
-          <div id="cl{{index}}" class="item">
-            <img src="RedCover2.jpg">
-            <div class="carousel-caption">
-            <p>{{Prize}}</p>
-            {{#each awards Prize}}
-              {{Sequence}} -- {{Name}}
-            {{/each}} 
-            </div>
-          </div>
-        {{/if}}
-      {{/each}}
-      </div>
-    
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+    <div>
+      <p class="text-muted">以下已無資料</p>
     </div>
-  </div>
+  </footer>
 </template>
-
-<template name="awardListCarousel">
-  <div>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-      {{#each prizes}}
-        {{#if isFirstIndex index}}
-          <div id="cl{{index}}" class="item active">
-            <img src="RedCover2.jpg">
-            <div class="carousel-caption">
-            <p>{{Prize}}</p>
-            {{#each awards Prize}}
-              {{Sequence}} -- {{Name}}
-            {{/each}} 
-            </div>
-          </div>
-        {{else}}
-          <div id="cl{{index}}" class="item">
-            <img src="RedCover2.jpg">
-            <div class="carousel-caption">
-            <p>{{Prize}}</p>
-            {{#each awards Prize}}
-              {{Sequence}} -- {{Name}}
-            {{/each}} 
-            </div>
-          </div>
-        {{/if}}
-      {{/each}}
-      </div>
-    
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-</template>
-
-<template name="mainLayout">
-    <!--<div class="container">-->
-        <header>
-            <h1>長庚醫院行政中心旺年會!</h1>
-        </header>
-        <main>
-            {{>Template.dynamic template=content}}
-        </main>
-        <footer>This is footer</footer>
-    <!--</div>-->
-</template>
-
->>>>>>> origin/master

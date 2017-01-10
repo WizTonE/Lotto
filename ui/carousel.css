@@ -4,7 +4,7 @@
       margin: auto;
   }
 .carousel-caption{
-    bottom: 700px;
+    top: 0px;
     font-size: 56px;
     vertical-align:text-top;
 }
@@ -12,7 +12,7 @@
     font-size: 26px;
     float:left;
 }
-.lastMembers{
+.lastMember{
     font-size: 55px;
     align-content: center;
 }

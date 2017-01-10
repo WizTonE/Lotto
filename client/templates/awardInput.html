@@ -1,0 +1,15 @@
+<template name="awardInput">
+    {{#each prizes}}
+    <p>{{Prize}}</p>
+    {{#each awards Prize}} {{Sequence}} - {{Name}}, {{/each}} {{/each}}
+    <br/>
+    <select id="prizes">
+    {{#each prizes}}
+      <option value="{{Prize}}">
+        {{Prize}}
+      </option>
+    {{/each}}
+  </select>
+    <input id="Sequence" />
+    <button class="btn btn-default" style="width: 200px">Update Member's Prize</button>
+</template>
