@@ -6,6 +6,7 @@ import '../client/jquery.backgroundPosition.js';
 import '../client/jquery.spritely.js';
 import '../client/slot.js';
 import '../ui/slot.css';
+import '../ui/carousel.css';
 
 // const handle = Meteor.subscribe('prize');
 // Tracker.autorun(() => {
@@ -29,6 +30,16 @@ Template.awardList.helpers({
   awards(prize){
     var myCursor = Members.find({Prize:prize}).fetch();
     return myCursor;
+  },
+  isFirstIndex(index){
+    if(index == 1) return true;
+    else return false;
+  },
+  last5Members(){
+    return Members.find({Prize:{$ne:""}},{sort:{Time:-1},limit:5}).fetch();
+  },
+  lastMember(){
+    return Members.find({Prize:{$ne:""}},{sort:{Time:-1},limit:1}).fetch();
   }
 });
 
@@ -48,6 +59,19 @@ Template.prizeInput.helpers({
   }
 });
 
+Template.awardListCarousel.helpers({
+  isFirstIndex(index){
+    if(index == 1) return true;
+    else return false;
+  },
+  prizes() {
+    return Prizes.find({},{sort: {index:-1}}).fetch();
+  },
+  awards(prize){
+    var myCursor = Members.find({Prize:prize}).fetch();
+    return myCursor;
+  }
+});
 
 // Template.hello.onCreated(function() {
 //   this.getListId = () => FlowRouter.getParam('_id');
@@ -76,7 +100,10 @@ Template.awardInput.events({
           {
             var member = Members.findOne({Sequence:parseInt(seq), Prize:""});
             if(member != undefined)
-              Members.update({_id:member._id},{$set:{Prize:prize}});
+            {
+              var time = new Date();
+              Members.update({_id:member._id},{$set:{Prize:prize, Time:time}});
+            }
             else
               alert('號碼不存在或已中獎');
           }
@@ -85,7 +112,10 @@ Template.awardInput.events({
             Prizes.insert({Sequence:totalPrizes.count()+1, Prize:prize});
             var member = Members.findOne({Sequence:parseInt(seq), Prize:""});
             if(member != undefined)
-              Members.update({Sequence:seq},{$set:{Prize:prize}});
+            {
+              var time = new Date();
+              Members.update({Sequence:seq},{$set:{Prize:prize, Time:time}});
+            }
             else
               alert('號碼不存在或已中獎');  
           }
@@ -104,4 +134,9 @@ Template.prizeInput.events({
           }
           $('#prize').val('');
     }
+});
+
+Template.awardListCarousel.onRendered(function () {
+  // Use the Packery jQuery plugin
+  this.$('cl1').addClass('active');
 });

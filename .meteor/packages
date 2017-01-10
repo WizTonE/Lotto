@@ -24,3 +24,5 @@ session
 kadira:flow-router
 check
 kadira:blaze-layout
+twbs:bootstrap
+mrt:jquery-ui
