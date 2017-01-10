@@ -5,7 +5,12 @@ import './main.html';
 import '../client/jquery.backgroundPosition.js';
 import '../client/jquery.spritely.js';
 import '../client/slot.js';
+<<<<<<< HEAD
 // import '../ui/slot.css';
+=======
+import '../ui/slot.css';
+import '../ui/carousel.css';
+>>>>>>> origin/master
 
 // const handle = Meteor.subscribe('prize');
 // Tracker.autorun(() => {
@@ -32,6 +37,16 @@ Template.awardList.helpers({
   awards(prize) {
     var myCursor = Members.find({ Prize: prize }).fetch();
     return myCursor;
+  },
+  isFirstIndex(index){
+    if(index == 1) return true;
+    else return false;
+  },
+  last5Members(){
+    return Members.find({Prize:{$ne:""}},{sort:{Time:-1},limit:5}).fetch();
+  },
+  lastMember(){
+    return Members.find({Prize:{$ne:""}},{sort:{Time:-1},limit:1}).fetch();
   }
 });
 
@@ -51,6 +66,19 @@ Template.prizeInput.helpers({
   }
 });
 
+Template.awardListCarousel.helpers({
+  isFirstIndex(index){
+    if(index == 1) return true;
+    else return false;
+  },
+  prizes() {
+    return Prizes.find({},{sort: {index:-1}}).fetch();
+  },
+  awards(prize){
+    var myCursor = Members.find({Prize:prize}).fetch();
+    return myCursor;
+  }
+});
 
 
 // Template.hello.onCreated(function() {
@@ -71,6 +99,7 @@ Template.hello.events({
 });;
 
 Template.awardInput.events({
+<<<<<<< HEAD
   'click button': function () {
     var prize = $('#prizes').val();
     var seq = $('#Sequence').val();
@@ -82,6 +111,37 @@ Template.awardInput.events({
         Members.update({ _id: member._id }, { $set: { Prize: prize } });
       else
         alert('號碼不存在或已中獎');
+=======
+    'click button': function(){
+          var prize = $('#prizes').val();
+          var seq = $('#Sequence').val();
+          var totalPrizes = Prizes.find();
+          var checker = Prizes.find({Prize:prize});
+          if(checker.count() > 0)
+          {
+            var member = Members.findOne({Sequence:parseInt(seq), Prize:""});
+            if(member != undefined)
+            {
+              var time = new Date();
+              Members.update({_id:member._id},{$set:{Prize:prize, Time:time}});
+            }
+            else
+              alert('號碼不存在或已中獎');
+          }
+          else
+          {
+            Prizes.insert({Sequence:totalPrizes.count()+1, Prize:prize});
+            var member = Members.findOne({Sequence:parseInt(seq), Prize:""});
+            if(member != undefined)
+            {
+              var time = new Date();
+              Members.update({Sequence:seq},{$set:{Prize:prize, Time:time}});
+            }
+            else
+              alert('號碼不存在或已中獎');  
+          }
+          $('#Sequence').val('');
+>>>>>>> origin/master
     }
     else {
       Prizes.insert({ Sequence: totalPrizes.count() + 1, Prize: prize });
@@ -103,6 +163,15 @@ Template.prizeInput.events({
     if (checker.count() == 0) {
       Prizes.insert({ index: totalPrizes.count() + 1, Prize: prize });
     }
+<<<<<<< HEAD
     $('#prize').val('');
   }
 });
+=======
+});
+
+Template.awardListCarousel.onRendered(function () {
+  // Use the Packery jQuery plugin
+  this.$('cl1').addClass('active');
+});
+>>>>>>> origin/master
