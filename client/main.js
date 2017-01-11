@@ -14,7 +14,7 @@ import '../ui/carousel.css';
 // Tracker.autorun(() => {
 //   Meteor.subscribe("prize", {Id: Session.get("_id")});
 // });
-
+pagingIndex = 0;
 Template.hello.helpers({
   counter() {
     return Prizes.find().count();
@@ -32,6 +32,19 @@ Template.awardList.helpers({
   prizes() {
     return Prizes.find({}, { sort: { index: -1 } }).fetch();
   },
+  pageAwards(prize) {
+    if(prize != undefined)
+    {
+      var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
+      var skips = pagingIndex;
+      var limits = totalAwardsbyPrize - pagingIndex;
+      if (limits > 20){
+        limits = 20;
+      }
+      pagingIndex = pagingIndex + 20;
+      return Members.find({Prize: prize}, { sort: { index: -1 }, skip:skips, limit:limits }).fetch();
+    }
+  },
   awards(prize) {
     var myCursor = Members.find({ Prize: prize }).fetch();
     return myCursor;
@@ -39,6 +52,16 @@ Template.awardList.helpers({
   isFirstIndex(index) {
     if (index == 1) return true;
     else return false;
+  },
+  paging(prize){
+    var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
+    var loopItem =  Math.ceil(totalAwardsbyPrize/20);
+    var foreachArray = [loopItem];
+    for(i = 0; i < loopItem; i ++)
+    {
+      foreachArray[i] = {Prize:prize};
+    }
+   return foreachArray;
   },
   last5Members() {
     return Members.find({ Prize: { $ne: "" } }, { sort: { Time: -1 }, limit: 5 }).fetch();
@@ -152,7 +175,7 @@ Template.awardList.onRendered(function () {
   // Use the Packery jQuery plugin
   $(function () {
     $('.carousel').carousel({
-      interval: 2000
+      interval: 5000
     });
   });
   $('#myCarousel').on('slide.bs.carousel', function () {

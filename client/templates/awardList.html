@@ -45,17 +45,23 @@
                 {{#each prizes}} {{#if isFirstIndex index}}
                 <div id="cl{{index}}" class="item active">
                     <img src="RedCover2.jpg" alt="{{Prize}}">
+                    {{#each paging Prize}}
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
-                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                        {{#each pageAwards Prize}} 
+                            <div>{{Sequence}} - {{Name}}</div> 
+                        {{/each}}
                     </div>
+                    {{/each}}
                 </div>
                 {{else}}
                 <div id="cl{{index}}" class="item">
                     <img src="RedCover2.jpg" alt="{{Prize}}">
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
-                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                        {{#each awards Prize}} 
+                            <div>{{Sequence}} - {{Name}}</div> 
+                        {{/each}}
                     </div>
                 </div>
                 {{/if}} {{/each}}
