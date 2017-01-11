@@ -36,14 +36,27 @@ Template.awardList.helpers({
     if(prize != undefined)
     {
       var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
-      var skips = pagingIndex;
-      var limits = totalAwardsbyPrize - pagingIndex;
-      if (limits > 20){
-        limits = 20;
+      if(totalAwardsbyPrize > 0)
+      {
+          var skips = pagingIndex;
+          var limits = totalAwardsbyPrize - pagingIndex;
+          if (limits > 20){
+            limits = 20;
+          }
+          pagingIndex = pagingIndex + 20;
+          return Members.find({Prize: prize}, { sort: { index: -1 }, skip:skips, limit:limits }).fetch();
       }
-      pagingIndex = pagingIndex + 20;
-      return Members.find({Prize: prize}, { sort: { index: -1 }, skip:skips, limit:limits }).fetch();
     }
+  },
+  paging(prize){
+    var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
+    var loopItem =  Math.ceil(totalAwardsbyPrize/20);
+    var foreachArray = [loopItem-1];
+    for(i = 0; i < loopItem-1; i ++)
+    {
+      foreachArray[i] = {Prize:prize};
+    }
+   return foreachArray;
   },
   awards(prize) {
     var myCursor = Members.find({ Prize: prize }).fetch();
@@ -53,15 +66,12 @@ Template.awardList.helpers({
     if (index == 1) return true;
     else return false;
   },
-  paging(prize){
+  isPagingRequired(prize){
     var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
-    var loopItem =  Math.ceil(totalAwardsbyPrize/20);
-    var foreachArray = [loopItem];
-    for(i = 0; i < loopItem; i ++)
-    {
-      foreachArray[i] = {Prize:prize};
-    }
-   return foreachArray;
+    if(totalAwardsbyPrize > 20)
+      return true;
+    else
+      return false;
   },
   last5Members() {
     return Members.find({ Prize: { $ne: "" } }, { sort: { Time: -1 }, limit: 5 }).fetch();
