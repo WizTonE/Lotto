@@ -4,18 +4,24 @@
         {{#each lastMember}}
         <div class="lastMember bg-warning">
             <p>
-                <span class="congrate-txt">恭喜</span> {{Sequence}} - {{Name}}
-                <span class="congrate-txt">獲得 {{Prize}}!!!</span>
+                <span class="congrate-text">恭喜</span> {{Sequence}} - {{Name}}
+                <span class="congrate-text">獲得 {{Prize}} !</span>
             </p>
         </div>
         {{/each}}
 
-        <table class="table table-condensed">
+        <table class="table table-condensed last-5-members">
             <thead>
                 <tr>
-                    <th>獎項</th>
-                    <th>抽獎編號</th>
-                    <th>中獎人</th>
+                    <th>
+                        <div class='text-center'>獎項</div>
+                    </th>
+                    <th>
+                        <div class='text-center'>抽獎編號</div>
+                    </th>
+                    <th>
+                        <div class='text-center'>中獎人</div>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +29,10 @@
                 <!--<p> - {{Name}}</p>-->
                 <tr class="{{tableRowStyle @index}}">
                     <!--<th scope="row">2</th>-->
-                    <td>{{Prize}}</td>
-                    <td>{{Sequence}}</td>
+                    <td>{{Prize}} </td>
+                    <td>
+                        <div class='congrate-text'>{{Sequence}}</div>
+                    </td>
                     <td>{{Name}}</td>
                 </tr>
                 {{/each}}
@@ -47,7 +55,27 @@
                     <img src="RedCover2.jpg" alt="{{Prize}}">
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
-                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                        <!--{{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}-->
+                        <table class="table table-condensed last-5-members">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class='text-center'>抽獎編號</div>
+                                    </th>
+                                    <th>
+                                        <div class='text-center'>中獎人</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each awards Prize }}
+                                <tr>
+                                    <td>{{Sequence}} </td>
+                                    <td>{{Name}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 {{else}}
@@ -55,7 +83,27 @@
                     <img src="RedCover2.jpg" alt="{{Prize}}">
                     <div class="carousel-caption">
                         <p>{{Prize}}</p>
-                        {{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}
+                        <!--{{#each awards Prize}} {{Sequence}} - {{Name}} {{/each}}-->
+                        <table class="table table-condensed last-5-members">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class='text-center'>抽獎編號</div>
+                                    </th>
+                                    <th>
+                                        <div class='text-center'>中獎人</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each awards Prize }}
+                                <tr>
+                                    <td>{{Sequence}} </td>
+                                    <td>{{Name}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 {{/if}} {{/each}}

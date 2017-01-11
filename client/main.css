@@ -1,6 +1,6 @@
 /* CSS declarations go here */
  body {
-    padding-top: 120px;
+    padding-top: 100px;
     background: #FF8000;
 }
 
@@ -12,6 +12,7 @@
    /*border: 3px solid #73AD21;  */
    font-size: 30px;
    /*padding: 15px; */
+   background-color: #FFFFDF;
 }
 
 .after-box {
@@ -36,6 +37,11 @@
     
 }
 
+.footer-text{
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 50px;
+}
 
 @media screen and (max-width: 1000px)
 {
