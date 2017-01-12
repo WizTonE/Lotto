@@ -26,3 +26,5 @@ check
 kadira:blaze-layout
 twbs:bootstrap
 mrt:jquery-ui
+blaze
+richsilv:owl-carousel

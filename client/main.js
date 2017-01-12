@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { Blaze } from 'meteor/blaze';
 import { ReactiveVar } from 'meteor/reactive-var';
 // import { DDP } from 'meteor/ddp-client'
 import './main.html';
@@ -14,6 +15,8 @@ import '../ui/carousel.css';
 // Tracker.autorun(() => {
 //   Meteor.subscribe("prize", {Id: Session.get("_id")});
 // });
+
+
 pagingIndex = 0;
 Template.hello.helpers({
   counter() {
@@ -29,6 +32,9 @@ Template.awardList.helpers({
   //   formerFivePrizes() {
   // return
   //   },
+  AwardListChanged: function(){
+    return Session.get("AwardListChanged");
+  },
   prizes() {
     return Prizes.find({}, { sort: { index: -1 } }).fetch();
   },
@@ -39,27 +45,27 @@ Template.awardList.helpers({
       if(totalAwardsbyPrize > 0)
       {
           var skips = pagingIndex;
-          var limits = totalAwardsbyPrize - pagingIndex;
-          if (limits > 20){
-            limits = 20;
-          }
-          pagingIndex = pagingIndex + 20;
-          return Members.find({Prize: prize}, { sort: { index: -1 }, skip:skips, limit:limits }).fetch();
+          pagingIndex = pagingIndex + 10;
+          var limits = skips + 10;
+          if (limits > totalAwardsbyPrize )
+            limits = totalAwardsbyPrize;
+          var awards = Members.find({Prize: prize}, { sort: {Time:1} }).fetch();
+          return awards.slice(skips, limits);
       }
     }
   },
   paging(prize){
     var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
-    var loopItem =  Math.ceil(totalAwardsbyPrize/20);
-    var foreachArray = [loopItem-1];
-    for(i = 0; i < loopItem-1; i ++)
+    var loopItem =  Math.ceil(totalAwardsbyPrize/10);
+    var foreachArray = [loopItem];
+    for(i = 0; i < loopItem; i ++)
     {
       foreachArray[i] = {Prize:prize};
     }
    return foreachArray;
   },
   awards(prize) {
-    var myCursor = Members.find({ Prize: prize }).fetch();
+    var myCursor = Members.find({ Prize: prize },{ sort: {Time:1}} ).fetch();
     return myCursor;
   },
   isFirstIndex(index) {
@@ -68,8 +74,10 @@ Template.awardList.helpers({
   },
   isPagingRequired(prize){
     var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
-    if(totalAwardsbyPrize > 20)
+    pagingIndex = 0;
+    if(totalAwardsbyPrize > 10){
       return true;
+    }
     else
       return false;
   },
@@ -188,6 +196,9 @@ Template.awardList.onRendered(function () {
       interval: 5000
     });
   });
+  $(".owl-carousel").owlCarousel({
+      interval: 5000
+    });
   $('#myCarousel').on('slide.bs.carousel', function () {
     $('.right carousel-control').trigger('click');
   })
