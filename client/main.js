@@ -42,26 +42,33 @@ Template.awardList.helpers({
     if(prize != undefined)
     {
       var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
+      var loopItem =  Math.ceil(totalAwardsbyPrize/10)*10;
       if(totalAwardsbyPrize > 0)
       {
+        if(pagingIndex <= loopItem)
+        {
           var skips = pagingIndex;
+
           pagingIndex = pagingIndex + 10;
           var limits = skips + 10;
-          if (limits > totalAwardsbyPrize )
-            limits = totalAwardsbyPrize;
+
           var awards = Members.find({Prize: prize}, { sort: {Time:1} }).fetch();
           return awards.slice(skips, limits);
+        }
       }
     }
   },
+  
   paging(prize){
     var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
     var loopItem =  Math.ceil(totalAwardsbyPrize/10);
-    var foreachArray = [loopItem];
+    console.log('totalAwardsbyPrize:'+totalAwardsbyPrize);
+    var foreachArray = [];
     for(i = 0; i < loopItem; i ++)
     {
       foreachArray[i] = {Prize:prize};
     }
+    console.log('foreachArray:'+foreachArray);
    return foreachArray;
   },
   awards(prize) {
@@ -73,9 +80,21 @@ Template.awardList.helpers({
     else return false;
   },
   isPagingRequired(prize){
-    var totalAwardsbyPrize = Members.find({ Prize: prize }).count();
-    pagingIndex = 0;
-    if(totalAwardsbyPrize > 10){
+    if(prize=='六獎' || prize=='五獎'){
+      return true;
+    }
+    else
+      return false;
+  },
+  isAwards6(prize){
+    if(prize=='六獎'){
+      return true;
+    }
+    else
+      return false;
+  },
+  isAwards5(prize){
+    if( prize=='五獎'){
       return true;
     }
     else
@@ -124,6 +143,29 @@ Template.awardListCarousel.helpers({
   }
 });
 
+Template.slide.helpers({
+  pageAwards(prize, page)
+  {
+    var awards = Members.find({Prize: prize}, { sort: {Time:1} }).fetch();
+    if(page=='p1')
+      return awards.slice(0, 10);
+    if(page=='p2')
+      return awards.slice(10, 20);
+    if(page=='p3')
+      return awards.slice(20, 30);
+    if(page=='p4')
+      return awards.slice(30, 40);
+    if(page=='p5')
+      return awards.slice(40, 50);
+  },
+});
+
+Template.registerHelper('context', function(prize, page) {
+  var result = _.clone(this);
+    result.Prize = prize;
+    result.Page = page;
+    return result;
+});
 
 // Template.hello.onCreated(function() {
 //   this.getListId = () => FlowRouter.getParam('_id');

@@ -39,11 +39,6 @@
             </tbody>
         </table>
     </div>
-    <div>
-        {{#each pageAwards '六獎'}}
-        {{Sequence}}--{{Name}}
-        {{/each}}
-    </div>
 
     <div>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -65,35 +60,21 @@
                 </div>
                 {{#each prizes}} 
                 
-                    {{#if isPagingRequired Prize}}
-                        {{#each paging Prize}}
-                            <div id="cl{{index}}_{{index}}" class="item">
-                                <img src="RedCover2.jpg" alt="{{Prize}}">
-                                <div class="carousel-caption">
-                                    <p>{{Prize}}</p>
-                                    <table class="table table-condensed last-5-members">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class='text-center'>抽獎編號</div>
-                                            </th>
-                                            <th>
-                                                <div class='text-center'>中獎人</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{#each pageAwards Prize}} 
-                                        <tr>
-                                            <td>{{Sequence}} </td>
-                                            <td>{{Name}}</td> 
-                                        </tr>
-                                        {{/each}}
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
-                        {{/each}}
+                    {{#if isAwards6 Prize}}
+                        
+                            {{> slide context Prize 'p1'}}
+                            {{> slide context Prize 'p2'}}
+                            {{> slide context Prize 'p3'}}
+                            {{> slide context Prize 'p4'}}
+                            {{> slide context Prize 'p5'}}
+                    {{else}}
+
+                    {{#if isAwards5 Prize}}
+                        
+                            {{> slide context Prize 'p1'}}
+                            {{> slide context Prize 'p2'}}
+                            
+
                 {{else}}
                 <div id="cl{{index}}" class="item">
                     <img src="RedCover2.jpg" alt="{{Prize}}">
@@ -123,6 +104,7 @@
                     </div>
                 </div>
                 {{/if}}
+                {{/if}}
              {{/each}}
             </div>
 
@@ -134,6 +116,35 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div>
+    </div>
+</template>
+
+<template name="slide">
+    <div class="item">
+        <img src="RedCover2.jpg" alt="{{Prize}}">
+        <div class="carousel-caption">
+            <p>{{Prize}}</p>
+            <table class="table table-condensed last-5-members">
+            <thead>
+                <tr>
+                    <th>
+                        <div class='text-center'>抽獎編號</div>
+                    </th>
+                    <th>
+                        <div class='text-center'>中獎人</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each pageAwards Prize Page}} 
+                <tr>
+                    <td>{{Sequence}} </td>
+                    <td>{{Name}}</td> 
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
         </div>
     </div>
 </template>
