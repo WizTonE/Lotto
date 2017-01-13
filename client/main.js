@@ -100,6 +100,13 @@ Template.awardList.helpers({
     else
       return false;
   },
+  isAwards4(prize){
+    if( prize=='四獎'){
+      return true;
+    }
+    else
+      return false;
+  },
   last5Members() {
     return Members.find({ Prize: { $ne: "" } }, { sort: { Time: -1 }, limit: 5 }).fetch();
   },

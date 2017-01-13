@@ -73,7 +73,15 @@
                         
                             {{> slide context Prize 'p1'}}
                             {{> slide context Prize 'p2'}}
-                            
+                            {{> slide context Prize 'p3'}}
+                            {{> slide context Prize 'p4'}}
+                    {{else}}
+
+                    {{#if isAwards4 Prize}}
+                        
+                            {{> slide context Prize 'p1'}}
+                            {{> slide context Prize 'p2'}}
+                            {{> slide context Prize 'p3'}}
 
                 {{else}}
                 <div id="cl{{index}}" class="item">
@@ -103,6 +111,7 @@
                         </table>
                     </div>
                 </div>
+                {{/if}}
                 {{/if}}
                 {{/if}}
              {{/each}}
